@@ -3,7 +3,7 @@ import math
 import matplotlib.pyplot as plt
 
 
-START = (1, 1)
+START = (0, 0)
 GOAL = (9, 9)
 STEP_SIZE = 0.5
 MAX_ITER = 1000
