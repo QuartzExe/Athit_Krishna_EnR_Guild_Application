@@ -56,6 +56,5 @@ def a_star():
     return None
 
 
-# Run it
 path = a_star()
 print("Path:", path)
