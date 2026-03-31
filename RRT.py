@@ -108,7 +108,7 @@ if path:
     xs, ys = zip(*path)
     plt.plot(xs, ys, 'r-', linewidth=2, label="Path")
 
-# Start and Goal
+
 plt.plot(START[0], START[1], 'bo', label="Start")
 plt.plot(GOAL[0], GOAL[1], 'ro', label="Goal")
 
