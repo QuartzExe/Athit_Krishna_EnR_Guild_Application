@@ -1,0 +1,69 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+L1 = 1.0
+L2 = 0.8
+
+
+q1 = np.pi / 2   # 90 degrees
+
+
+z_vals = np.linspace(0.4, 1.0, 100)
+r = 1.2  # constant radial distance
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+for z in z_vals:
+
+    
+    D = (r**2 + z**2 - L1**2 - L2**2) / (2 * L1 * L2)
+
+    
+    D = np.clip(D, -1, 1)
+
+   
+    q3 = -np.arccos(D)
+
+    q2 = np.arctan2(z, r) - np.arctan2(L2*np.sin(q3), L1 + L2*np.cos(q3))
+
+    
+    joint1 = np.array([
+        L1*np.cos(q2)*np.cos(q1),
+        L1*np.cos(q2)*np.sin(q1),
+        L1*np.sin(q2)
+    ])
+
+    end = np.array([
+        r*np.cos(q1),
+        r*np.sin(q1),
+        z
+    ])
+
+    base = np.array([0, 0, 0])
+
+   
+    ax.cla()
+
+    ax.plot([base[0], joint1[0], end[0]],
+            [base[1], joint1[1], end[1]],
+            [base[2], joint1[2], end[2]],
+            marker='o', linewidth=3)
+
+    
+    ax.scatter(end[0], end[1], end[2])
+
+    ax.set_xlim([-1.5, 1.5])
+    ax.set_ylim([-1.5, 1.5])
+    ax.set_zlim([0, 1.5])
+
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+
+    ax.set_title("Robotic Refueling Arm Simulation")
+
+    plt.pause(0.05)
+
+plt.show()
